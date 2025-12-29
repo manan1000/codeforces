@@ -15,3 +15,11 @@ int main(){
 
     return 0;
 }
+
+/*
+
+TC - 
+SC - 
+note - 
+
+*/
