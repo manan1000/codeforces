@@ -10,8 +10,11 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        int n;
-        cin>>n;
+        ll n,k;
+        cin>>n>>k;
+        
+        if(n%2==1 && (n-k)%2==1) cout<<"NO\n";
+        else cout<<"YES\n";
     } 
 
     return 0;
@@ -19,8 +22,8 @@ int main(){
 
 /*
 
-TC - 
-SC - 
-note - 
+TC - O(1)
+SC - O(1)
+note - it is not possible if n and n-k is odd 
 
 */
