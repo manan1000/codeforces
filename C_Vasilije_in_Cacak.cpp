@@ -1,18 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-
-bool isPossible(ll n,ll k,ll sum){
-    for(ll i=n;i>=1;i--){
-        if(i<=sum) {
-            sum-=i;
-            k--;
-        }
-
-    }
-
-    return k==0?true:false;
-}
+#define yes cout<<"YES\n"
+#define no cout<<"NO\n"
 
 int main(){
     ios::sync_with_stdio(0);
@@ -24,8 +14,11 @@ int main(){
         ll n,k,sum;
         cin>>n>>k>>sum;
 
-        if(isPossible(n,k,sum)) cout<<"YES\n";
-        else cout<<"NO\n";
+        ll min_sum=(k*(k+1))/2;
+        ll max_sum=(n*(n+1))/2 - ((n-k)*(n-k+1))/2;
+
+        if(min_sum<=sum && sum<=max_sum) yes;
+        else no;
     } 
 
     return 0;
@@ -33,8 +26,8 @@ int main(){
 
 /*
 
-TC - 
-SC - 
-note - 
+TC - O(1)
+SC - O(1)
+note - if the sum lies between the min and max sum or k distinct elements then it is possible
 
 */
