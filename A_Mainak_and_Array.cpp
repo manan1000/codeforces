@@ -16,19 +16,19 @@ int main(){
         int arr[n];
         for(int i=0;i<n;i++) cin>>arr[i];
 
-        int maxi=*max_element(arr,arr+n);
-        int mini=*min_element(arr,arr+n);
+        int maxDifference=0;
 
-        if(arr[0]==mini || arr[n-1]==maxi) cout<<maxi-mini<<"\n";
-        else{
-            int maxDifference=max(arr[0]-arr[1],arr[n-2],arr[n-1]);
+        //disrupt first place
+        for(int i=0;i<n-1;i++) maxDifference=max(maxDifference,arr[n-1]-arr[i]);
 
-            for(int i=1;i<n-1;i++){
-                maxDifference=max(maxDifference, arr[i]-arr[i+1]);
-            }
+        // disrupt last place 
+        for(int i=1;i<n;i++) maxDifference=max(maxDifference,arr[i]-arr[0]);
 
-            cout<<maxDifference<<"\n";
-        }
+
+        //disrupt both first and last
+        for(int i=0;i<n-1;i++) maxDifference=max(maxDifference,arr[i]-arr[i+1]);
+
+        cout<<maxDifference<<"\n";
     } 
 
     return 0;
@@ -36,8 +36,11 @@ int main(){
 
 /*
 
-TC - 
-SC - 
-note - 
-
+TC - O(N)
+SC - O(1)
+note - disrupt the first place then last place and then both
+       Meaning there are 3 steps to find the answer
+       First step - Fix the last element and we find the best first element accordingly (note the last element does not have be the max element)
+       Second step - Fix the first element and we find the best last element accordingly (note the first element does not have be the min element)
+       Third step - nothing is fixed we rotate the entire array and check adjacent elements to find max diff
 */
