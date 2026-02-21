@@ -4,6 +4,10 @@ typedef long long ll;
 #define yes cout<<"YES\n"
 #define no cout<<"NO\n"
 
+int solve(){
+    return 0;
+}
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -22,6 +26,6 @@ int main(){
 
 TC - 
 SC - 
-note - 
+note  - 
 
 */
