@@ -4,8 +4,18 @@ typedef long long ll;
 #define yes cout<<"YES\n"
 #define no cout<<"NO\n"
 
-int solve(){
-    return 0;
+int solve(string s , string comb){
+    int count=0;
+    int curIndex=1;
+
+    for(int i=s.length()-1;i>=0;i--){
+        if(s[i]==comb[curIndex]) curIndex--;
+        else count++;
+
+        if(curIndex<0) return count;
+    }
+
+    return INT_MAX;
 }
 
 int main(){
@@ -15,39 +25,15 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        ll n;
-        cin>>n;
-
-        if(n%25==0) cout<<0<<"\n";
-        else{
-            int count=0;
-            int lastNumber;
-            while(n!=0){
-                lastNumber=n%10;
-                if(lastNumber==0 || lastNumber==5) break;
-                else count++;
-                n/=10;
-            }
-            n/=10;
-            if(lastNumber==0){
-                while(n!=0){
-                    int secondLastNumber=n%10;
-                    if(secondLastNumber==0 || secondLastNumber==5) break;
-                    else count++;
-                    n/=10;
-                }
-            }
-            else {
-                while(n!=0){
-                    int secondLastNumber=n%10;
-                    if(secondLastNumber==2 || secondLastNumber==7) break;
-                    else count++;
-                    n/=10;
-                }
-            }
-
-            cout<<count<<"\n";
+        string s;
+        cin>>s;
+        int ans=INT_MAX;
+        vector<string> validCombinations={"00","25","50","75"};
+        for(string comb: validCombinations){
+            ans=min(ans,solve(s,comb));
         }
+
+        cout<<ans<<"\n";
     } 
 
     return 0;
