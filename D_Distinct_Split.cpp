@@ -19,36 +19,34 @@ int main(){
         string s;
         cin>>n;
         cin>>s;
-        vector<int> charFreq(26,0);
+
+        unordered_set<char> seenLeft,seenRoght;
+        vector<int> prefix(n),suffix(n);
         for(int i=0;i<n;i++){
-            charFreq[s[i]-'a']++;
+            seenLeft.insert(s[i]);
+            prefix[i]=seenLeft.size();
         }
 
-        unordered_set<char> seen;
-        int a=0,b=0;
-        for(int i=0;i<n;i++){
-            if(seen.find(s[i])==seen.end()){
-                if(charFreq[s[i]-'a']>=2) {
-                    seen.insert(s[i]);
-                    a++;
-                    charFreq[s[i]-'a']--;
-                }
-            }
-            else break;
+        for(int i=n-1;i>=0;i--){
+            seenRoght.insert(s[i]);
+            suffix[i]=seenRoght.size();
         }
-        for(int i=0;i<26;i++){
-            if(charFreq[i]>0) b++;
+
+        int maxDistinct=0;
+
+        for(int i=0;i<n-1;i++){
+            maxDistinct=max(maxDistinct,prefix[i]+suffix[i+1]);
         }
-        cout<<a+b<<"\n";
+
+        cout<<maxDistinct<<"\n";
     } 
 
     return 0;
 }
 
 /*
-
-TC - 
-SC - 
-note  - 
-
+ 
+TC - O(N) 
+SC - O(N) because set is O(26) at max
+note  - we can precalculate the number of distinct characters from the left and from the right.
 */
